@@ -16,7 +16,7 @@ import (
 var ErrorBadRequest = errors.New("invalid request parameter")
 
 // make http handler use mux
-func MakeHttpHandler(ctx context.Context, endpoints *endpoint.UserEndpoints) http.Handler {
+func NewHttpHandler(_ context.Context, endpoints *endpoint.UserEndpoints) http.Handler {
 	router := mux.NewRouter()
 
 	kitLog := kitlog.NewLogfmtLogger(os.Stderr)
@@ -68,12 +68,12 @@ func decodeLoginRequest(_ context.Context, request *http.Request) (interface{}, 
 	}
 
 	return &endpoint.LoginRequest{
-		Email: email,
+		Email:    email,
 		Password: password,
 	}, nil
 }
 
-func encodeJSONResponse(ctx context.Context, writer http.ResponseWriter, response interface{}) error {
+func encodeJSONResponse(_ context.Context, writer http.ResponseWriter, response interface{}) error {
 	writer.Header().Set("Content-Type", "application/json;charset=utf-8")
 	return json.NewEncoder(writer).Encode(response)
 }

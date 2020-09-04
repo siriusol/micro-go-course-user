@@ -20,7 +20,7 @@ type LoginResponse struct {
 	UserInfo *service.UserInfoDTO `json:"user_info"`
 }
 
-func MakeLoginEndpoint(userService service.UserService) endpoint.Endpoint {
+func NewLoginEndpoint(userService service.UserService) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
 		req := request.(*LoginRequest)
 		userInfo, err := userService.Login(ctx, req.Email, req.Password)
@@ -38,7 +38,7 @@ type RegisterResponse struct {
 	UserInfo *service.UserInfoDTO `json:"user_info"`
 }
 
-func MakeRegisterEndpoint(userService service.UserService) endpoint.Endpoint {
+func NewRegisterEndpoint(userService service.UserService) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
 		req := request.(*RegisterRequest)
 		userInfo, err := userService.Register(ctx, &service.RegisterUserVO{
