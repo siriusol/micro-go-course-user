@@ -2,9 +2,8 @@ package dao
 
 import "testing"
 
-func initMysql() (err error) {
-	err = InitMysql("127.0.0.1", "3306", "root", "root", "user")
-	return
+func initMysql() error {
+	return InitMysql("127.0.0.1", "3306", "root", "root", "user")
 }
 
 func TestUserDAOImpl_Save(t *testing.T) {
@@ -29,8 +28,7 @@ func TestUserDAOImpl_Save(t *testing.T) {
 
 func TestUserDAOImpl_SelectByEmail(t *testing.T) {
 	userDAO := &UserDAOImpl{}
-	err := initMysql()
-	if err != nil {
+	if err := initMysql(); err != nil {
 		t.Error(err)
 		t.FailNow()
 	}
