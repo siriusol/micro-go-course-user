@@ -25,7 +25,7 @@ func InitRedis(host, port, password string) error {
 			}
 			return conn, err
 		},
-		TestOnBorrow:    func(conn redis.Conn, t time.Time) error {
+		TestOnBorrow: func(conn redis.Conn, t time.Time) error {
 			_, err := conn.Do("PING")
 			return err
 		},

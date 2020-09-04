@@ -3,11 +3,11 @@ package dao
 import "time"
 
 type UserEntity struct {
-	ID       int64
-	Username string
-	Password string
-	Email    string
-	CreatedAt  time.Time
+	ID        int64
+	Username  string
+	Password  string
+	Email     string
+	CreatedAt time.Time
 }
 
 func (UserEntity) TableName() string {
