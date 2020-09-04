@@ -20,7 +20,7 @@ func NewHttpHandler(_ context.Context, endpoints *endpoint.UserEndpoints) http.H
 	router := mux.NewRouter()
 
 	kitLog := kitlog.NewLogfmtLogger(os.Stderr)
-	kitLog = kitlog.With(kitLog, "ts", kitlog.DefaultTimestampUTC)
+	kitLog = kitlog.With(kitLog, "timestamp", kitlog.DefaultTimestampUTC)
 	kitLog = kitlog.With(kitLog, "caller", kitlog.DefaultCaller)
 
 	options := []kithttp.ServerOption{
