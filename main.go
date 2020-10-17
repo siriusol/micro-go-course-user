@@ -38,6 +38,9 @@ func main() {
 	}
 	handler := transport.NewHttpHandler(ctx, userEndpoints)
 
+	log.Println("service listening at 127.0.0.1:10086...")
+
+
 	go func() {
 		errChan <- http.ListenAndServe(":"+strconv.Itoa(*servicePort), handler)
 	}()
